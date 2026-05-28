@@ -1,0 +1,14 @@
+{
+  "name": "agent-ecosystem-ticket-router",
+  "version": "0.0.1",
+  "description": "Triage, route, and close tickets across a project ecosystem using MCP tool descriptions",
+  "author": {
+    "name": "Arne von Appen"
+  },
+  "repository": "https://github.com/Seretos/agent-ecosystem-ticket-router",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Agent Ecosystem Ticket Router",
+    "shortDescription": "Triage, route, and close tickets across a project ecosystem using MCP tool descriptions"
+  }
+}
