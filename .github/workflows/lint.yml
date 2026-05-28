@@ -1,0 +1,39 @@
+name: lint
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate plugin.json is valid JSON
+        run: jq empty .claude-plugin/plugin.json
+
+      - name: Validate every SKILL.md has YAML frontmatter
+        run: |
+          python3 - <<'EOF'
+          import re, sys, glob
+          bad = False
+          paths = sorted(glob.glob("skills/*/SKILL.md"))
+          if not paths:
+              print("::error::no skills/*/SKILL.md files found"); sys.exit(1)
+          for path in paths:
+              text = open(path, encoding="utf-8").read()
+              m = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
+              if not m:
+                  print(f"::error::{path} missing YAML frontmatter"); bad = True; continue
+              fm = m.group(1)
+              if "name:" not in fm or "description:" not in fm:
+                  print(f"::error::{path} frontmatter missing 'name' or 'description'"); bad = True; continue
+              print(f"{path}: OK")
+          sys.exit(1 if bad else 0)
+          EOF
