@@ -1,0 +1,16 @@
+version: 1
+
+projects:
+  - id: agent-ecosystem-ticket-router
+    description: Pure skill plugin for triaging and routing ecosystem tickets
+    provider: github
+    path: Seretos/agent-ecosystem-ticket-router
+    token_env: GITHUB_TOKEN
+    permissions:
+      issues:
+        create: true
+        modify: true
+      pulls:
+        create: true
+        modify: true
+        merge: false
