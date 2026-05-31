@@ -1,0 +1,14 @@
+{
+  "name": "agent-ecosystem-ticket-router",
+  "description": "Triage, route, and close tickets across a project ecosystem using MCP tool descriptions",
+  "version": "0.0.4",
+  "author": {
+    "name": "Arne von Appen"
+  },
+  "dependencies": [
+    {
+      "name": "agent-project-issues",
+      "version": ">=0.0.1 <1.0.0"
+    }
+  ]
+}
