@@ -74,6 +74,7 @@ jobs:
           cp .codex-plugin/plugin.json  "$STAGE/.codex-plugin/"
           cp -a skills/. "$STAGE/skills/"
           cp README.md "$STAGE/"
+          cp description.md "$STAGE/"
           cp LICENSE "$STAGE/" 2>/dev/null || true
           # assets/ goes onto the orphan release branch so the dispatch
           # payload's icon URL (raw.githubusercontent.com/${repo}/${TAG}/
@@ -176,7 +177,8 @@ jobs:
               "category":    "skill",
               "version":     "${VERSION}",
               "ref":         "${TAG}",
-              "icon":        "https://raw.githubusercontent.com/${{ github.repository }}/${TAG}/assets/icon.png"
+              "icon":        "https://raw.githubusercontent.com/${{ github.repository }}/${TAG}/assets/icon.png",
+              "description_url": "https://raw.githubusercontent.com/${{ github.repository }}/${TAG}/description.md"
             }
           }
           EOF
